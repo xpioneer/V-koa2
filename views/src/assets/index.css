@@ -1,0 +1,40 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-weight: normal;
+  font-style: normal;
+  // font-family: Roboto, sans-serif;
+  word-break: break-all;
+}
+
+
+#mainContent{
+  display: flex;
+  max-width: 1240px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 30px
+}
+
+#leftContent{
+  flex: 1;
+}
+#rightContent{
+  flex: 2;
+  padding-left: 30px
+}
+
+@media screen and (max-width: 680px){
+  #mainContent{
+    flex-direction: column;
+  }
+  #leftContent{
+    flex: 1;
+  }
+  #rightContent{
+    flex: 1;
+    padding-left: 0px
+  }
+}
