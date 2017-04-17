@@ -98,7 +98,13 @@ App.on('error', (err, ctx) =>
   console.error('server error', err, ctx)
 );
 
+let port = 8800;
+if(NODE_ENV === "production"){
+  port = 990;
+}
+
+
 Http.createServer(App.callback()).listen(8800);
 
 
-console.log(`Koa2 server start on 127.:8800`)
+console.log(`Koa2 server start on 127.:${port}`)

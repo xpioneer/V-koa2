@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "dev": "./node_modules/.bin/nodemon -i public/ --harmony-async-await server.js"
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon -i public/ --harmony-async-await server.js",
+    "production": "NODE_ENV=production node server"
   },
   "keywords": [
     "Koa2",
