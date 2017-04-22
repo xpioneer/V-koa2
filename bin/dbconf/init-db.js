@@ -1,5 +1,5 @@
 
-import model from '../models'
+import model from '../../models'
 
 model.sync();
 
