@@ -59,11 +59,11 @@ class ArticleController {
 
   /*获取所有*/
   static async getList(ctx){
+    // console.log(ctx.query)
     let list = await Article.findAll({
       attributes:['id', 'title', 'abstract', 'pics', 'praise', 'contempt', 'view_count', 'is_original', 'created_at'],
       limit: 2
     });
-    console.log(list)
     let _list = list.map(m=>{
       m.dataValues.created_at = DateTimeF(m.created_at);
       // m.updated_at = DateTimeF(m.updated_at);
@@ -81,7 +81,6 @@ class ArticleController {
       //   updated_at: DateTimeF(m.updated_at)
       // }
     });
-    console.log(_list)
     ctx.Json({data: _list})
   }
 
