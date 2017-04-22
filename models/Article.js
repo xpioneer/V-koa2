@@ -48,7 +48,6 @@ const Article = DB.defineModel('article', {
     user_id: {
       type: Sequelize.STRING(32),
       allowNull: false,
-      defaultValue: '初始状态',
       comment: "审核状态描述"
     },
     is_original: {

@@ -2,7 +2,7 @@ import Router from 'koa-router'
 import Article from '../controllers/ArticleController'
 
 const router = new Router({
-  prefix: 'api/article'
+  prefix: '/api/article'
 });
 
 router
