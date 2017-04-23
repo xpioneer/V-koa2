@@ -5,8 +5,8 @@
   "author": "Keefe",
   "license": "MIT",
   "scripts": {
-    "dev": "node conf/server.js",
-    "publish": "webpack --config ./conf/webpack.prod.conf.js"
+    "dev": "NODE_ENV=development node conf/server.js",
+    "publish": "NODE_ENV=production webpack --config ./conf/webpack.prod.conf.js"
   },
   "dependencies": {
     "axios": "^0.15.3",

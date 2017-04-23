@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import Authorize from '../controllers/ArticleController'
+import Authorize from '../controllers/AuthController'
 
 const router = new Router({
   prefix: '/api/authorize'
@@ -7,6 +7,7 @@ const router = new Router({
 
 router
   .get('/add', Authorize.addToken)
-  .get('/:id', Authorize.getToken);
+  .get('/all', Authorize.getAll)
+  .get('/:id', Authorize.getTokenById);
 
 export default router

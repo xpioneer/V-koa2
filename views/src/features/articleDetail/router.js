@@ -1,4 +1,4 @@
-import { sagaMiddleware } from 'ROOTSTORE'
+import { injectSaga } from 'ROOTSAGA'
 import { injectReducer } from 'ROOTREDUCER'
 import createContainer from 'UTILS/createContainer'
 
@@ -13,7 +13,7 @@ export default {
   getComponent: (nextState, cb) => {
     require.ensure([], require => {
       injectReducer('articleDetail', require('FEATURES/articleDetail/redux/reducer').default)
-      sagaMiddleware.run(require("./redux/saga").default)
+      injectSaga('articleDetail', require("./redux/saga").default)
       cb(null, ArticleDetail)
     }, 'articleDetail')
   }

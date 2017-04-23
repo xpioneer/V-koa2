@@ -29,9 +29,11 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import store from 'ROOTSTORE'
+//默认需要加载的
 import dashbord from 'FEATURES/dashbord/redux/reducer'
 import home from 'FEATURES/home/redux/reducer'
 import siderbar from 'FEATURES/siderbar/redux/reducer'
+import body from 'FEATURES/body/redux/reducer'
 // console.log(siderbar)
 // ================================
 // 同步的 Reducers（即应用初始化所必需的）
@@ -40,7 +42,8 @@ const syncReducers = {
   routerReducer,
   // dashbord,
   home,
-  siderbar
+  siderbar,
+  body
 }
 
 // ================================
@@ -64,7 +67,8 @@ export function createRootReducer() {
  * @param  {Function} reducer
  */
 export function injectReducer(key, reducer) {
-  asyncReducers[key] = reducer
-  console.log('异步注入Reducer')
+  if(!asyncReducers[key]){
+    asyncReducers[key] = reducer
+  }
   store.replaceReducer(createRootReducer())
 }

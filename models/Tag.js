@@ -1,10 +1,12 @@
 import Sequelize from 'sequelize'
 import DB from "./db"
 
-const Authorize = DB.defineModel('authorize', {
-    token: {
-      type: Sequelize.STRING(64),
+const Tag = DB.defineModel('tag', {
+    name: {
+      type: Sequelize.STRING(20),
       allowNull: false,
+      defaultValue: '',
+      comment: "标签名称"
     },
     remark: {
       type: Sequelize.STRING(100),
@@ -19,4 +21,4 @@ const Authorize = DB.defineModel('authorize', {
   },
 );
 
-export default Authorize
+export default Tag

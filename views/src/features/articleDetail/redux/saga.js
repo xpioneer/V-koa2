@@ -9,11 +9,12 @@ import {
 import Api from '../api'
 
 function* articleFetch(action){
+  console.log('获取文章详情')
   try{
     const article = yield call(Api.getArticle, action.id);
     yield put({ type: SET_ARTICLE, article })
   }catch(e){
-    console.log({error: e.message})
+    console.log({error: e.msg})
   }
 }
 
@@ -24,6 +25,6 @@ function* watchFetch(){
 
 export default function* saga() {
   yield [
-    fork(watchFetch)
+    call(watchFetch)
   ]
 }

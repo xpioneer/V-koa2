@@ -1,13 +1,9 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import { createRootReducer } from 'ROOTREDUCER'
-
 import reduxLogger from 'redux-logger'
-import createSagaMiddleware from 'redux-saga'
 
-// import saga from 'FEATURES/dashbord/redux/saga'
+import { sagaMiddleware, runSaga } from 'ROOTSAGA'
 
-
-export const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
   createRootReducer(),
@@ -21,7 +17,9 @@ const store = createStore(
     // ...enhancers
   )
 )
-// sagaMiddleware.run(saga)
+
+runSaga()
+
 export default store
 
 // ======================================================
