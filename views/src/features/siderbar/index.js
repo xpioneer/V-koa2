@@ -45,7 +45,7 @@ class SiderBar extends Component {
 
   handleGo = (url) => {
     let {isCloseAction} = this.props;
-    // isCloseAction();
+    isCloseAction();
     browserHistory.push(url)
   }
 
@@ -72,12 +72,14 @@ class SiderBar extends Component {
           <Divider />
           <MenuItem style={style.menu} onTouchTap={()=>this.handleGo('/vue')} >Vue</MenuItem>
           <Divider />
-          <MenuItem onTouchTap={()=>this.handleGo('/404')}>
-            <Link to="/404"
-              style={{display:'block', textDecoration:'none', color: '#666'}}
-              activeStyle={{color: '#f80'}}>404</Link>
-          </MenuItem>
-          <Divider />
+          {
+            __DEV__?(<div><MenuItem onTouchTap={()=>this.handleGo('/404')}>
+              <Link to="/404" activeStyle={{color: '#f80'}}
+                style={{display:'block', textDecoration:'none', color: '#666'}}>404</Link>
+            </MenuItem>
+            <Divider /></div>):('')
+            
+          }
         </Drawer>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Chip from 'MATERIALUI/Chip'
 import Paper from 'MATERIALUI/Paper'
+import FlatButton from 'MATERIALUI/FlatButton'
 
 const style = {
   paper: {
@@ -27,6 +28,15 @@ const style = {
     backgroundColor: '#03a9f4',
     bottom: '2px'
   },
+  button: {
+    height:'',
+    width: '100%',
+    textAlign: 'left',
+    borderBottom: '1px solid rgb(235, 235, 235)'
+  },
+  time:{
+    color: '#aaaaaa'
+  }
 }
 
 export default class Tags extends Component {
@@ -39,12 +49,11 @@ export default class Tags extends Component {
     // console.log(this.props)
   }
 
-  handleTouchTap = (e) =>{
-    console.log('你点击了...', e)
-  }
-
   render() {
-    // console.log(this)
+    const {
+      tagList, recentList, hotList,
+      tagGroup, viewArticle
+    } = this.props;
     return (<div>
       <Paper
         style={style.paper}
@@ -55,10 +64,9 @@ export default class Tags extends Component {
           <i style={style.line}></i>
         </div>
         <div style={style.flex}>
-          <Chip style={style.chip} onTouchTap={this.handleTouchTap}>React</Chip>
-          <Chip style={style.chip} onTouchTap={this.handleTouchTap}>Vue2.0</Chip>
-          <Chip style={style.chip}>Angular1</Chip>
-          <Chip style={style.chip}>jQuery</Chip>
+          {
+            tagList.map((m, index)=><Chip key={index} style={style.chip} onTouchTap={()=>tagGroup(m.name)}>{m.name}</Chip>)
+          }
         </div>
       </Paper>
 
@@ -71,10 +79,13 @@ export default class Tags extends Component {
         <i style={style.line}></i>
       </div>
       <div style={style.flex}>
-        <Chip style={style.chip} onTouchTap={()=>this.handleTouchTap(123)}>React</Chip>
-        <Chip style={style.chip} onTouchTap={this.handleTouchTap}>Vue2.0</Chip>
-        <Chip style={style.chip}>Angular1</Chip>
-        <Chip style={style.chip}>jQuery</Chip>
+        {
+          recentList.map((m, index)=>{
+            return <FlatButton key={index} style={style.button} onTouchTap={()=>viewArticle(m.id)}>
+              <div>{m.title} <span style={style.time}>{m.created_at}</span></div>
+            </FlatButton>
+          })
+        }
       </div>
     </Paper>
     
@@ -87,10 +98,13 @@ export default class Tags extends Component {
         <i style={style.line}></i>
       </div>
       <div style={style.flex}>
-        <Chip style={style.chip} onTouchTap={this.handleTouchTap}>React</Chip>
-        <Chip style={style.chip} onTouchTap={this.handleTouchTap}>Vue2.0</Chip>
-        <Chip style={style.chip}>Angular1</Chip>
-        <Chip style={style.chip}>jQuery</Chip>
+        {
+          hotList.map((m, index)=>{
+            return <FlatButton key={index} style={style.button} onTouchTap={()=>viewArticle(m.id)}>
+              <div>{m.title} <span style={style.time}>{m.created_at}</span></div>
+            </FlatButton>
+          })
+        }
       </div>
     </Paper>
     

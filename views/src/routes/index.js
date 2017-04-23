@@ -18,7 +18,7 @@ export default {
   childRoutes: [
 
     // require('FEATURES/dashbord/router').default,
-    require('FEATURES/home/router').default,
+    ...require('FEATURES/home/router').default,
     require('FEATURES/vue/router').default,
     require('FEATURES/articleDetail/router').default,
     

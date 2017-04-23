@@ -85,6 +85,7 @@ module.exports = {
       
       ROOTREDUCER: path.join(process.cwd(), 'src/redux/reducer'),
       ROOTSTORE: path.join(process.cwd(), 'src/redux/store'),
+      ROOTSAGA: path.join(process.cwd(), 'src/redux/saga'),
     }
   },
   plugins:[
@@ -93,5 +94,12 @@ module.exports = {
       filename: 'vendor/js/[name].[hash:4].js'
     }),
     new ExtractTextPlugin({filename: "css/[name].[hash:5].css", allChunks: true}),
+    new webpack.ProvidePlugin({
+      $http: path.resolve(process.cwd(),'src/utils/http')
+    }),
+    new webpack.DefinePlugin({
+      __DEV__: process.env.NODE_ENV.trim() === 'development',
+      __PROD__: process.env.NODE_ENV.trim() === 'production'
+    })
   ]
 };

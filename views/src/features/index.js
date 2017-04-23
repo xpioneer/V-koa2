@@ -11,15 +11,18 @@ import Footer from 'COMPONENTS/footer'
 
 const muiTheme = getMuiTheme({
   palette: {
-    textColor: blue500,
+    textColor: '#555555',//'#001f4b',
   },
   appBar: {
-    height: 50,
+    textColor: '#001f4b'
+    // color: '#F44336'
+    // color: 'rgba(53, 73, 97, 0.0)',
+    // position: 'fixed'
   },
 });
-
+console.log(muiTheme)
 const App = ({children}) => (
-  <MuiThemeProvider muiTheme={getMuiTheme()}>
+  <MuiThemeProvider muiTheme={muiTheme}>
     <div>
       <Header />
       <SiderBar />

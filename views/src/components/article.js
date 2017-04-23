@@ -62,7 +62,7 @@ export default class Article extends Component {
               rounded={false}
               zDepth={1}>
               <div style={style.title}>{article.title}</div>
-              <div style={style.body}>{article.content}</div>
+              <div style={style.body}>{article.is_original?'【原创】':''}{article.abstract}</div>
               <div style={style.footer}>
                 <div style={style.desc}>
                   <span style={style.desctxt}>作者:{article.created_by}</span>

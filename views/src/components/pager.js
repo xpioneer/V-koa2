@@ -24,20 +24,36 @@ export default class Pager extends Component {
     super(props);
   }
 
-  // handleToggle = () => this.setState({open: !this.state.open});
-
-  // handleClose = () => this.setState({open: false});
-
   render() {
-    // console.log(this.props)
+    const {
+      pager:{
+        count,        //当前页数条数
+        current_page, //当前页(默认1)
+        per_page,     //每页条数(默认1)
+        total,        //总数
+        total_page    //总页数
+      },
+      flip
+    } = this.props;
     return (
       <div style={style.wrap}>
         <div style={style.flex}>
           <div style={style.pager}>
-            <FlatButton label="上一页" hoverColor="#ff8800" icon={<ChevronLeft/>} />
+            <FlatButton
+              disabled={current_page == 1}
+              onTouchTap={()=>flip('prev')}
+              label="上一页"
+              hoverColor="#ff8800"
+              icon={<ChevronLeft/>} />
           </div>
           <div style={style.pager}>
-            <FlatButton label="下一页" hoverColor="#ff8800" labelPosition="before" icon={<ChevronRight/>} />
+            <FlatButton
+              disabled={total == 0 || current_page*per_page >= total}
+              onTouchTap={()=>flip('next')}
+              label="下一页"
+              hoverColor="#ff8800"
+              labelPosition="before"
+              icon={<ChevronRight/>} />
           </div>
         </div>
       </div>)
