@@ -4,35 +4,37 @@ import webConfig from '../../web.config'
 import Storage from '../storage'
 
 const Axios = axios.create({
-  baseURL: webConfig.host.http,
+  baseURL: webConfig.host.http + webConfig.apiPath,
   timeout: 60000,
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
-    'Authorization-User': 'access_token ' + Storage.get('ACCESSTOKEN')
   },
   transformResponse: [function (data) {
-    // return typeof data === 'string' ? JSON.parse(data): data;
     return data;
   }],
+  responseType:'json',
 });
 
 // Add a request interceptors
 Axios.interceptors.request.use(function (config) {
-  if (config.headers['Authorization-User'] == "not_access" || !config.headers['Authorization-User']) {
-    config.headers['Authorization-User'] = 'access_token ' + Storage.get('ACCESSTOKEN')
-  }
+  config.headers['Authorization-User'] = Storage.get('ACCESSTOKEN')
   return config;
 }, function (error) {
   return Promise.reject(error);
 });
 
 // Add a response interceptor
-Axios.interceptors.response.use(function (response) {
-  // Do something with response data
+Axios.interceptors.response.use(response => {
+  if(response.status == 200){
+    return response.data
+  }
   return response;
-}, function (error) {
-  // Do something with response error
-  return Promise.reject(error);
+}, error => {
+  console.log(JSON.parse(JSON.stringify(error)), error.response, 'http/error')
+  let status = error.response.status;
+  return Promise.reject(JSON.parse(JSON.stringify(error)).response.data);//customer
+  // return Promise.reject(error);
 });
 
-export default Axios;
+module.exports = Axios
+// export default Axios;

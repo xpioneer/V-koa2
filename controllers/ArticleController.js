@@ -62,7 +62,7 @@ class ArticleController {
     // console.log(ctx.query)
     let list = await Article.findAll({
       attributes:['id', 'title', 'abstract', 'pics', 'praise', 'contempt', 'view_count', 'is_original', 'created_at'],
-      limit: 2
+      limit: 5
     });
     let _list = list.map(m=>{
       m.dataValues.created_at = DateTimeF(m.created_at);
@@ -85,11 +85,16 @@ class ArticleController {
   }
 
   static async pages(ctx){
-    let page = await Article.findAndCountAll(ctx.getParams);
+    console.log('get ArticlePages', ctx.getParams)
+    let page = await Article.findAndCountAll({
+      ...ctx.getParams,
+      ...{
+        attributes:['id', 'title', 'abstract', 'pics', 'praise', 'contempt', 'view_count', 'is_original', 'created_at'],
+        order: [['created_at', 'desc']]
+      }
+    });
     let list = page.rows.map(m=>{
-      m.created_at = DateTimeF(m.created_at);
-      m.updated_at = DateTimeF(m.updated_at);
-      m.deleted_at = DateTimeF(m.deleted_at);
+      m.dataValues.created_at = DateTimeF(m.created_at);
       return m;
     })
     ctx.Pages({page: page})
@@ -99,6 +104,34 @@ class ArticleController {
     let para = ctx.request.body;
     // console.log(ctx.status, 6688)
     ctx.Json({data: JSON.parse(para)})
+  }
+
+  /*最新5篇*/
+  static async recent(ctx){
+    let list = await Article.findAll({
+      attributes:['id', 'title', 'view_count', 'is_original', 'created_at'],
+      limit: 5,
+      order: [['created_at', 'desc']]
+    });
+    let _list = list.map(m=>{
+      m.dataValues.created_at = DateTimeF(m.created_at);
+      return m;
+    })
+    ctx.Json({data: _list})
+  }
+
+  /*最热5篇*/
+  static async hot(ctx){
+    let list = await Article.findAll({
+      attributes:['id', 'title', 'view_count', 'is_original', 'created_at'],
+      limit: 5,
+      order: [['view_count', 'desc']]
+    });
+    let _list = list.map(m=>{
+      m.dataValues.created_at = DateTimeF(m.created_at);
+      return m;
+    })
+    ctx.Json({data: _list})
   }
 
   static async delete(ctx){

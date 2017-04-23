@@ -1,3 +1,7 @@
+
+import Param from 'UTILS/tools/param'
+
+
 const articleList = [{
   id: 'ab432b324b32c1321',
   title: 'React Application',
@@ -33,6 +37,18 @@ const getArticleList = () =>{
   })
 }
 
+const getAllArticle = param =>{
+  return new Promise((resolve, reject)=>{
+    $http.get('/article/pages?'+Param(param)).then(r=>{
+      console.log(r)
+      resolve(r)
+    }).catch(e=>{
+      reject(e)
+    })
+  })
+}
+
 export default {
-  getArticleList
+  getArticleList,
+  getAllArticle
 }
