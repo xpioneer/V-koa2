@@ -9,14 +9,14 @@ const config = require('./webpack.base.conf'),
 config.devtool = SOURCE_MAP ? 'eval-source-map' : false;
 
 config.plugins = (config.plugins || []).concat([
-    // new webpack.optimize.UglifyJsPlugin({
-    //   output: {
-    //     comments: false
-    //   },
-    //   compress: {
-    //     warnings: true
-    //   }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      output: {
+        comments: false
+      },
+      compress: {
+        warnings: true
+      }
+    }),
     new HtmlWebpackPlugin({
         title: 'VisualTech',
         filename: 'index.html',
