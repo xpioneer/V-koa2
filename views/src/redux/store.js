@@ -5,14 +5,17 @@ import reduxLogger from 'redux-logger'
 import { sagaMiddleware, runSaga } from 'ROOTSAGA'
 
 
+const middlewares = [sagaMiddleware];
+if(__DEV__){
+  middlewares.push(reduxLogger())
+}
+
+
 const store = createStore(
   createRootReducer(),
   // window.__INITIAL_STATE__ || {}, // 前后端同构（服务端渲染）数据同步
   compose(
-    applyMiddleware(
-      sagaMiddleware,
-      reduxLogger()
-    ),
+    applyMiddleware(...middlewares),
     // applyMiddleware(sagaMiddleware),
     // ...enhancers
   )
@@ -21,15 +24,3 @@ const store = createStore(
 runSaga()
 
 export default store
-
-// ======================================================
-// 增强版 history
-// ======================================================
-// export const history = syncHistoryWithStore(store)
-
-
-// const store = applyMiddleware(
-//     reduxLogger
-// )(createStore)(createRootReducer())
-
-// export default store

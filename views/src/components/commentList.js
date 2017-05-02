@@ -3,6 +3,8 @@ import React, {Component} from 'react'
 import Paper from 'MATERIALUI/Paper'
 import TextField from 'MATERIALUI/TextField'
 import FlatButton from 'MATERIALUI/FlatButton'
+import {List, ListItem} from 'MATERIALUI/List'
+import Subheader from 'MATERIALUI/Subheader'
 
 const style = {
   comment: {
@@ -24,11 +26,20 @@ export default class CommentList extends Component {
     const { list } = this.props;
     return (
       <Paper>
-      {
-        list.map((c, index)=>
-          <p key={index} style={style.comment}>{c.content}</p>
-        )
-      }
+        <List>
+        <Subheader>评论列表</Subheader>
+        {
+          list.length > 0
+            ? list.map((c, index)=>
+              <ListItem
+                key={index}
+                primaryText={c.content}
+                secondaryText={c.created_at}/>)
+            : <ListItem
+                primaryText='暂无评论'
+                secondaryText='期待你的留言~'/>
+        }
+        </List>
       </Paper>)
   }
 }

@@ -54,12 +54,6 @@ const Article = DB.defineModel('article', {
       type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false
-    },
-    version: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-      comment: "版本"
     }
   },
 );

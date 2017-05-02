@@ -20,10 +20,9 @@ import Cors from '../middlewares/cors'
 import article from '../routes/article'
 import authorize from '../routes/authorize'
 import tag from '../routes/tag'
+import comment from '../routes/comment'
 import moment from 'moment'
 
-console.log(moment(null).isValid(), 'null')
-console.log(moment(undefined).isValid(), 'undefined')
 
 const App = new Koa();
 Qs(App, 'extended')
@@ -37,7 +36,7 @@ App.use(Compress({
 }))
 App.use( Favicon(process.cwd() + '/public/favicon.ico') )
 App.use( Views(process.cwd() + '/views/dist', { map: { html: 'ejs' } }) )
-App.use( Serve(process.cwd() + '/views/dist') )
+// App.use( Serve(process.cwd() + '/views/dist') )
 App.use(Body())
 
 if(process.env.NODE_ENV == 'development'){
@@ -59,6 +58,7 @@ App.use(Authorize)
 App.use(article.routes())
 App.use(authorize.routes())
 App.use(tag.routes())
+App.use(comment.routes())
 
 
 App.on('error', (err, ctx) =>
