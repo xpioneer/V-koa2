@@ -11,12 +11,6 @@ const Tag = DB.defineModel('tag', {
     remark: {
       type: Sequelize.STRING(100),
       allowNull: true,
-    },
-    version: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-      comment: "版本"
     }
   },
 );

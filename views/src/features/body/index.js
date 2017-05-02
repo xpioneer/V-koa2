@@ -57,14 +57,14 @@ const iconStyle = {
 export default class MainContent extends Component {
 
   componentDidMount(){
-    console.log(this.props, 'body componentDidMount')
+    // console.log(this.props, 'body componentDidMount')
     this.props.fetchRecentList();
     this.props.fetchHotList();
     this.props.fetchTagList();
   }
 
   tagGroup = tag =>{
-    console.log(tag)
+    // console.log(tag)
     browserHistory.replace(`/tag/${encodeURIComponent(tag)}`)
   }
 
@@ -78,9 +78,9 @@ export default class MainContent extends Component {
       <Paper
         rounded={false}
         zDepth={1}>
-        <div style={style.banner}>
-          <h1 style={style.title}>WEB DESIGNER</h1>
-          <h2 style={style.subtitle}>keep moving</h2>
+        <div id="banner" style={style.banner}>
+          <h2 id="title" style={style.title}>WEB DESIGNER</h2>
+          <h3 style={style.subtitle}>keep moving</h3>
         </div>
         <div id="mainContent">
           <div id="leftContent">

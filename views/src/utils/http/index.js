@@ -30,8 +30,6 @@ Axios.interceptors.response.use(response => {
   }
   return response;
 }, error => {
-  console.log(JSON.parse(JSON.stringify(error)), error.response, 'http/error')
-  let status = error.response.status;
   return Promise.reject(JSON.parse(JSON.stringify(error)).response.data);//customer
   // return Promise.reject(error);
 });

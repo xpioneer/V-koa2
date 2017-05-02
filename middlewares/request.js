@@ -1,5 +1,3 @@
-'use strict';
-
 let getParams = ctx =>{
   console.log(`ctx.type:${ctx.type}, ctx.method:${ctx.method}`)
   let data = {};
