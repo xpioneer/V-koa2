@@ -6,14 +6,18 @@ const path = require('path'),
 module.exports = {
   entry: {
     app: ['./src/index.js'],
-    vendor: [
+    vendor1: [
       "react",
-      "react-dom",
+      "react-dom"
+    ],
+    vendor2: [
+      "axios",
+      "redux",
+      "redux-saga",
       "react-redux",
       "react-router",
-      "redux"
-    ],
-    material: "material-ui"
+      "react-tap-event-plugin"
+    ]
   },
   output: {
     path: path.join(__dirname, "../dist/"),
@@ -65,12 +69,9 @@ module.exports = {
           // loader: 'file-loader',
           options:{
             limit: '10240',
-            name: 'assets/images/[name].[hash:3].[ext]'
+            name: 'images/[name].[hash:3].[ext]'
           }
         }]
-        // use: 'file-loader?limit=202400000&name=assets/images/[name].[hash:6].[ext]'
-        // use: 'file-loader?name=[md5:hash:base64:10].[ext]'
-        // loader: 'url-loader?limit=100&name=./static/assets/[name].[hash:4].[ext]'
       }
     ]
   },
@@ -90,10 +91,10 @@ module.exports = {
   },
   plugins:[
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
+      name: ['vendor2', 'vendor1', 'manifest'],
       filename: 'vendor/js/[name].[hash:4].js'
     }),
-    new ExtractTextPlugin({filename: "css/[name].[hash:5].css", allChunks: true}),
+    new ExtractTextPlugin({filename: "css/[name].[contenthash:5].css", allChunks: true}),
     new webpack.ProvidePlugin({
       $http: path.resolve(process.cwd(),'src/utils/http')
     }),

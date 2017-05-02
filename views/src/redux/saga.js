@@ -25,7 +25,7 @@ export function injectSaga(key, saga) {
   }
 }
 
-//执行saga
+//执行saga(执行一次)
 export function runSaga(){
   sagaMiddleware.run(home);
   sagaMiddleware.run(body);

@@ -5,6 +5,8 @@ import AppBar from 'MATERIALUI/AppBar';
 import IconButton from 'MATERIALUI/IconButton';
 import Menu from 'MATERIALUI/svg-icons/Navigation/menu';
 
+let title = 'Keefe'
+if(!__DEV__) title = '前端汇聚网'
 
 @connect(
   ({ isOpen }) => ({ isOpen }),
@@ -20,7 +22,6 @@ class Header extends Component{
   }
 
   componentDidMount(){
-    console.log(this.props, 'header componentDidMount')
     window.addEventListener('scroll', ()=>{
       let h = document.documentElement.scrollTop || document.body.scrollTop;
       let o = h/400;
@@ -33,7 +34,6 @@ class Header extends Component{
           + Math.ceil((255-75)*o + 75) +','
           +'1)'})
       }
-      console.log(this.state)
     }, !1)
   }
   render(){
@@ -47,10 +47,10 @@ class Header extends Component{
         titleStyle={{
           color: this.state.textColor
         }}
-        title="前端汇聚网"
+        title={title}
         iconElementLeft={
           <IconButton onClick={()=>isOpenAction()}>
-            <Menu />
+            <Menu color={this.state.textColor}/>
           </IconButton>
         }
         iconClassNameRight="muidocs-icon-navigation-expand-more"/>

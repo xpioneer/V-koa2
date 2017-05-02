@@ -1,34 +1,7 @@
-// import { createStore, applyMiddleware } from 'redux';
-// // import thunkMiddleware from 'redux-thunk';
-// // import createLogger from 'redux-logger';
-// import rootReducer from '../reducers';
-
-// let createStoreWithMiddleware;
-
-// // const logger = createLogger({ collapsed: true });
-// createStoreWithMiddleware = applyMiddleware(
-//     // thunkMiddleware,
-//     // logger
-// )(createStore);
-
-// export default function configureStore(initialState) {
-//     const store = createStoreWithMiddleware(rootReducer, initialState);
-//     // console.log(store)
-//     if (module.hot) {
-//         // Enable Webpack hot module replacement for reducers
-//         module.hot.accept('../reducers', () => {
-//             const nextRootReducer = require('../reducers/index');
-//             store.replaceReducer(nextRootReducer);
-//         });
-//     }
-//     return store;
-// }
-
-
-
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import store from 'ROOTSTORE'
+
 //默认需要加载的
 import dashbord from 'FEATURES/dashbord/redux/reducer'
 import home from 'FEATURES/home/redux/reducer'

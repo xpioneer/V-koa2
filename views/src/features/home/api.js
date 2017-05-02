@@ -40,7 +40,6 @@ const getArticleList = () =>{
 const getAllArticle = param =>{
   return new Promise((resolve, reject)=>{
     $http.get('/article/pages?'+Param(param)).then(r=>{
-      console.log(r)
       resolve(r)
     }).catch(e=>{
       reject(e)

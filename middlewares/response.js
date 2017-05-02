@@ -1,8 +1,8 @@
 'use strict';
 
 let json = ctx => {
-  return (data, responseData) => {
-    responseData = responseData || new Object();
+  return (data) => {
+    let responseData = new Object();
     if(typeof data === 'object' && data !== null){
       responseData = data;
       responseData.msg = data.msg||"";
@@ -12,13 +12,14 @@ let json = ctx => {
       responseData.msg = "data's type is not an empty object or arrary";
     }
     responseData.status = data.status || 200;
+    ctx.status = responseData.status;
     return ctx.body = responseData;
   }
 }
 
 let page = ctx =>{
-  return (data, responseData) =>{
-    responseData = responseData || new Object();
+  return (data) =>{
+    let responseData = new Object();
     if(typeof data === 'object' && data !== null){
       responseData.data = data.page.rows;
       let per_page = ctx.query.per_page ? ctx.query.per_page*1 : data.page.count;
@@ -32,6 +33,7 @@ let page = ctx =>{
       responseData.msg = data.msg||`查询到${responseData.meta.count}记录`;
     }
     responseData.status = data.status || 200;
+    ctx.status = responseData.status;
     return ctx.body = responseData;
   }
 }

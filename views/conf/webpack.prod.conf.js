@@ -14,13 +14,18 @@ config.plugins = (config.plugins || []).concat([
         comments: false
       },
       compress: {
-        warnings: true
+        warnings: false
       }
     }),
     new HtmlWebpackPlugin({
-        title: 'VisualTech',
+        title: '前端汇聚网',
         filename: 'index.html',
         template: 'src/index.html'
+    }),
+    new webpack.DefinePlugin({
+      "process.env": { 
+        NODE_ENV: JSON.stringify("production") 
+      }
     })
 ]);
 

@@ -5,31 +5,42 @@
   box-sizing: border-box;
   font-weight: normal;
   font-style: normal;
-  // font-family: Roboto, sans-serif;
+  font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
   word-break: break-all;
+}
+
+body{
+  background-color: #555555;
 }
 
 
 #mainContent{
   display: flex;
-  max-width: 1260px;
-  min-width: 300px;
+  max-width: 1460px;
+  min-width: 320px;
   margin: 0 auto;
   padding: 30px
 }
 
 #leftContent{
-  flex: 1;
+  flex: 2;
 }
 #rightContent{
-  flex: 2;
+  flex: 3;
   padding-left: 30px;
-  max-width: 800px;
+  // max-width: 800px;
 }
 
 @media screen and (max-width: 767px){
+  #banner{
+    height: 360px !important;
+  }
+  #title{
+    font-size: 32px !important;
+  }
   #mainContent{
     flex-direction: column;
+    padding: 10px;
   }
   #leftContent{
     flex: 1;

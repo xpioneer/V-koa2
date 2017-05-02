@@ -64,7 +64,9 @@ function defineModel(name, attributes) {
     };
     attrs.version = {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0,
+        comment: "版本"
     };
     return sequelize.define(name, attrs, {
         tableName: name,

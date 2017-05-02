@@ -1,7 +1,8 @@
 export default async(ctx, next) => {
   try {
     await next()
-    const status = ctx.status || 404
+    const status = ctx.status || 404;
+    console.log(status, '-------------------next()')
     if (status === 404) {
       ctx.throw(404)
     }else if(status === 402){

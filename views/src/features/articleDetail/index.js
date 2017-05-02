@@ -34,22 +34,22 @@ export default class ArticleDetail extends Component {
   }
   
   componentDidMount(){
-    // console.log(this.props, 'articleDetail')
+    // console.log(this.props, '9999999999999999')
     _id = this.props.params.id;
     this.props.fetchArticle(this.props.params.id)
+    this.props.fetchComment(this.props.params.id)
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    // console.log(nextProps, nextState, 'shouldUpdate')
     return true;
   }
 
   componentWillReceiveProps(nextProps) {
-    const id = nextProps.params.id;
-    // console.log(id, 'componentWillReceiveProps')
+    const id = nextProps.params.id;//其他文章
     if(_id !== id){
       _id = id;
       this.props.fetchArticle(id)
+      this.props.fetchComment(id)
     }
   }
 
@@ -60,13 +60,20 @@ export default class ArticleDetail extends Component {
     // console.log(prevProps, prevState, 'componentDidUpdate')
   }
 
+  onSubmit = (value)=>{
+    console.log(value, this)
+    if(value.length > 0 && value.trim().length > 0){
+      this.props.submitComment(this.props.params.id, value)
+    }
+  }
+
   render() {
-    let { articleDetail:{ article } } = this.props;
+    let { articleDetail:{ article, comment, commentSuccess, commentList }, setComment } = this.props;
     return (
       <div>
         <ArticleDetailComponent article={article}/>
-        <Comment/>
-        <CommentList list={list}/>
+        <Comment onSubmit={this.onSubmit} value={comment} setValue={setComment} commentSuccess={commentSuccess}/>
+        <CommentList list={commentList}/>
       </div>)
   }
 }

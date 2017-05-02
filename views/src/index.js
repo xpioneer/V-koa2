@@ -1,4 +1,3 @@
-
 import './assets/index.css'//customer style
 
 
@@ -10,8 +9,9 @@ import { Router, Redirect, hashHistory, browserHistory, IndexRoute } from 'react
 import store from 'ROOTSTORE'
 import routes from './routes'
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();// Needed for onTouchTap
+console.log('oooooooooooooo')
 
 ReactDOM.render(
   <Provider store={store}>

@@ -20,7 +20,7 @@ const muiTheme = getMuiTheme({
     // position: 'fixed'
   },
 });
-console.log(muiTheme)
+if(__DEV__){console.log(muiTheme)}
 const App = ({children}) => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <div>
