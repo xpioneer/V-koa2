@@ -32,7 +32,7 @@ function* watchFetch(){
 function* submitComment(action){
   try{
     const result = yield call(Api.submitComment, action);
-    yield put({ type: FETCH_SUCCESS, msg: result.msg })
+    yield put({ type: FETCH_SUCCESS, msg: result.msg });
   }catch(e){
     yield put({type: FETCH_ERROR, msg:'评论失败' })
   }

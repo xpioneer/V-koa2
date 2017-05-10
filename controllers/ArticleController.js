@@ -1,29 +1,9 @@
-import UTILS from '../utils'
+import TOOLS from '../utils/tools'
 import DB from '../models'
 
-const { Guid, DateTimeF, DateF, TimeF } = UTILS
+const { Guid, DateTimeF, DateF, TimeF } = TOOLS
 
 const Article = DB.Article;
-
-let randomData = async()=>{
-  // let id = Guid();
-  // let cid = Guid();
-  // let wid = Guid();
-  // let notice = await Article.create({
-  //   id: id,
-  //   serial_no: 'TZD-'+id.substr(0, 16),
-  //   customer_id: cid,
-  //   customer_name: '客户'+cid.substr(0, 16),
-  //   warehouse_id: wid,
-  //   warehouse_name: '仓库'+wid.substr(0, 16),
-  //   weight: 100.00,
-  //   type: 1,
-  //   approval_status: 1,
-  //   created_by: "0528e0a76816c06358d7687b76e545c3",
-  //   created_username: 'xiaobin',
-  //   remark: '测试数据'+id
-  // });
-}
 
 //serialize condition
 let getPagePara = (query) => {
@@ -144,13 +124,13 @@ class ArticleController {
     ctx.body = r;
   }
 
-  static async add(ctx){
-    let N = 10;
-    for(let i = 0; i < N; i++){
-      await randomData();
-    }
-    ctx.Json({data: `成功生成了${N}条随机数据！`})
-  }
+  // static async add(ctx){
+  //   let N = 10;
+  //   for(let i = 0; i < N; i++){
+  //     await randomData();
+  //   }
+  //   ctx.Json({data: `成功生成了${N}条随机数据！`})
+  // }
 }
 
 export default ArticleController

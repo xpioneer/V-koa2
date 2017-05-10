@@ -1,5 +1,3 @@
-
-
 import App from 'FEATURES'
 import NotFound from 'COMPONENTS/404'
 
@@ -16,11 +14,10 @@ export default {
   },
   
   childRoutes: [
-
-    // require('FEATURES/dashbord/router').default,
     ...require('FEATURES/home/router').default,
     require('FEATURES/vue/router').default,
     require('FEATURES/articleDetail/router').default,
+    // require('FEATURES/editArticle/router').default,
     
     // 强制“刷新”页面的 hack
     // { path: 'redirect', component: require('COMPONENTS/Redirect').default },

@@ -30,30 +30,19 @@ const style = {
   }
 };
 
-@connect(
-  ({body})=>({body}),
-  require('./redux/action').default
-)
-export default class MainContent extends Component {
+
+export default class AdminContent extends Component {
 
   componentDidMount(){
-    // console.log(this.props, 'body componentDidMount')
-    this.props.fetchRecentList();
-    this.props.fetchHotList();
-    this.props.fetchTagList();
+    // this.props.fetchRecentList();
   }
 
-  tagGroup = tag =>{
-    // console.log(tag)
-    browserHistory.replace(`/tag/${encodeURIComponent(tag)}`)
-  }
-
-  viewArticle = id =>{
-    browserHistory.replace(`/articledetail/${id}`)
-  }
+  // viewArticle = id =>{
+  //   browserHistory.replace(`/articledetail/${id}`)
+  // }
 
   render() {
-    const { body:{ tagList, articleRecent, articleHot } } = this.props;
+    // const { body:{ tagList, articleRecent, articleHot } } = this.props;
     return (
       <Paper
         rounded={false}
@@ -64,9 +53,6 @@ export default class MainContent extends Component {
         </div>
         <div id="mainContent">
           <div id="leftContent">
-            <Tags
-              tagList={tagList} hotList={articleHot} recentList={articleRecent}
-              tagGroup={this.tagGroup} viewArticle={this.viewArticle}/>
           </div>
           <div id="rightContent">
             {this.props.children}

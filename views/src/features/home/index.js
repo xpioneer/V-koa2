@@ -21,7 +21,7 @@ export default class Home extends Component {
   }
   
   componentDidMount(){
-    console.log(this.props, 'componentDidMount')
+    // console.log(this.props, 'componentDidMount')
     this.getArticlePage(this.props.params.tag);
   }
 

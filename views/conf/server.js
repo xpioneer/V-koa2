@@ -7,6 +7,7 @@ const url = config.host+config.port;
 
 const webpackConfig = require("./webpack.dev.conf");
     webpackConfig.entry.app.unshift("webpack-dev-server/client?"+url, "webpack/hot/only-dev-server");
+    webpackConfig.entry.admin.unshift("webpack-dev-server/client?"+url, "webpack/hot/only-dev-server");
     var path = require('path');
 
 const Webpack = require("webpack");

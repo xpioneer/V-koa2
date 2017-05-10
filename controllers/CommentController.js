@@ -1,7 +1,7 @@
-import UTILS from '../utils'
+import TOOLS from '../utils/tools'
 import DB from '../models'
 
-const { Guid, DateTimeF, DateF, TimeF, TodayRange } = UTILS
+const { Guid, DateTimeF, DateF, TimeF, TodayRange } = TOOLS
 
 const Comment = DB.Comment;
 
@@ -10,26 +10,28 @@ class CommentController {
   /*创建评论*/
   static async create(ctx){
     const ip = ctx.ip;//获取客户端ip
+    let para = ctx.request.fields;
     const todayRange = TodayRange();
     const count = await Comment.count({
       where: {
         ip: {$eq: ip},
+        article_id: {$eq: para.article_id},
         created_at: {
           $gte: todayRange[0],
           $lt: todayRange[1]
         }
       }
     });
-    if(count >= 10){
+    if(count >= 3){
       ctx.Json({status: 403, data: '', msg: '评论数量已达上限！'})
     }else{
-      let para = ctx.request.fields;
       const comment = await Comment.create({
         id: Guid(),
         article_id: para.article_id,
         content: para.content,
         ip: ip,
         client: ctx.request.headers["user-agent"],
+        url: ctx.url,
         parent_id: 0,
         created_by: ''
       });

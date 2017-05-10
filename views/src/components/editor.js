@@ -1,27 +1,45 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 
-import Paper from 'MATERIALUI/Paper';
+import Paper from 'MATERIALUI/Paper'
+
+import Quill from 'quill'
+
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 const style = {
   wrap:{
-    paddingTop: '10px',
-    height: '160px',
-    backgroundColor: '#24292e'
+    height: '100%'
   },
-  txt:{
-    textAlign: 'center',
-    fontSize: '14px',
-    color: '#eee',
-    marginTop: '20px'
-  },
-  link:{
-    padding: '0 8px',
-    color: '#ffffff',
-    textDecoration: 'none'
+  text:{
+    width: '100%',
+    height: '100%'
   }
 };
 
+const toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
 
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+
+  ['link', 'image'],
+
+  ['clean']                                         // remove formatting button
+];
+console.log(navigator.userAgent)
 export default class Editor extends Component {
 
   constructor(props) {
@@ -29,9 +47,16 @@ export default class Editor extends Component {
     this.state = {open: false};
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
-
-  handleClose = () => this.setState({open: false});
+  componentDidMount(){
+    console.log(this.refs.quillEditor)
+    const QuillEditor = new Quill(this.refs.quillEditor, {
+      placeholder: '请输入您要写的内容...',
+      theme: 'snow',
+      modules: {
+        toolbar: toolbarOptions
+      }
+    });
+  }
 
   render() {
     return (
@@ -39,12 +64,7 @@ export default class Editor extends Component {
           style={style.wrap}
           rounded={false}
           zDepth={1}>
-          <div style={style.txt}>
-            <a href="javascript:;" style={style.link}>网站简介</a>
-            <a href="javascript:;" style={style.link}>使用说明</a>
-          </div>
-          <p style={style.txt}>Copyright © 2017 VisualTec，Technology Support By Keefe</p>
-          <p style={style.txt}>Email：qinfengwangyi@163.com</p>
+          <div style={style.text} ref="quillEditor"></div>
         </Paper>
     );
   }

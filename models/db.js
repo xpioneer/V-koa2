@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize'
 
-import UTILS from '../utils'
+import TOOLS from '../utils/tools'
 import DBConfig from '../config/DBConfig'
 
-const { Guid } = UTILS
+const { Guid } = TOOLS
 
 console.log('init sequelize...');
 
