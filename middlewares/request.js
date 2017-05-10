@@ -1,5 +1,5 @@
 let getParams = ctx =>{
-  console.log(`ctx.type:${ctx.type}, ctx.method:${ctx.method}`)
+  // console.log(`ctx.type:${ctx.type}, ctx.method:${ctx.method}`)
   let data = {};
   let query = ctx.query;
   if(query && Object.keys(query).length>0){
@@ -48,7 +48,7 @@ let getParams = ctx =>{
       data['order'] = orders
     }
   }
-  console.log('getParams-----------',data)
+  // console.log('getParams-----------',data)
   return data;
 }
 

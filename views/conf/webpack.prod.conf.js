@@ -20,7 +20,14 @@ config.plugins = (config.plugins || []).concat([
     new HtmlWebpackPlugin({
         title: '前端汇聚网',
         filename: 'index.html',
-        template: 'src/index.html'
+        template: 'src/template/index.html',
+        excludeChunks: ['admin']
+    }),
+    new HtmlWebpackPlugin({
+        title: '前端汇聚网-个人中心',
+        filename: 'admin.html',
+        template: 'src/template/admin.html',
+        excludeChunks: ['app']
     }),
     new webpack.DefinePlugin({
       "process.env": { 

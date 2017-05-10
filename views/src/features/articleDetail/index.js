@@ -5,26 +5,6 @@ import ArticleDetailComponent from 'COMPONENTS/articleDetail'
 import Comment from 'COMPONENTS/comment'
 import CommentList from 'COMPONENTS/commentList'
 
-
-const list = [
-  {
-    title: 'hehe1',
-    content: 'r439t938tureqpro34u'
-  },
-  {
-    title: 'hehe2',
-    content: 'riopewgiofjdsaiofhioefdsvds'
-  },
-  {
-    title: 'hehe3',
-    content: 'jlkfgdajflkdjsa;ure9qwuprewqopirue9iwjadfckldslkfjdshiagfidlsj'
-  },
-  {
-    title: 'hehe4',
-    content: '43254654w35urewiqoorjewq54354332'
-  },
-]
-
 let _id = null;
 
 export default class ArticleDetail extends Component {
@@ -61,18 +41,20 @@ export default class ArticleDetail extends Component {
   }
 
   onSubmit = (value)=>{
-    console.log(value, this)
     if(value.length > 0 && value.trim().length > 0){
       this.props.submitComment(this.props.params.id, value)
     }
   }
 
   render() {
-    let { articleDetail:{ article, comment, commentSuccess, commentList }, setComment } = this.props;
+    let { articleDetail:{ article, comment, commentDone, commentList }, setComment } = this.props;
+    if(commentDone.msg == '评论成功'){
+      this.props.fetchComment(this.props.params.id)
+    }
     return (
       <div>
         <ArticleDetailComponent article={article}/>
-        <Comment onSubmit={this.onSubmit} value={comment} setValue={setComment} commentSuccess={commentSuccess}/>
+        <Comment onSubmit={this.onSubmit} value={comment} setValue={setComment} commentSuccess={commentDone}/>
         <CommentList list={commentList}/>
       </div>)
   }

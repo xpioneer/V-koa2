@@ -6,6 +6,7 @@ const path = require('path'),
 module.exports = {
   entry: {
     app: ['./src/index.js'],
+    admin: ['./src/admin.js'],
     vendor1: [
       "react",
       "react-dom"
@@ -17,6 +18,9 @@ module.exports = {
       "react-redux",
       "react-router",
       "react-tap-event-plugin"
+    ],
+    editor: [
+      'quill'
     ]
   },
   output: {
@@ -66,7 +70,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [{
           loader: 'url-loader',
-          // loader: 'file-loader',
+          loader: 'file-loader',
           options:{
             limit: '10240',
             name: 'images/[name].[hash:3].[ext]'
@@ -84,6 +88,7 @@ module.exports = {
       FEATURES: path.join(process.cwd(), 'src/features'),
       UTILS: path.join(process.cwd(), 'src/utils'),
       
+      ROOTROUTER: path.join(process.cwd(), 'src/routes'),
       ROOTREDUCER: path.join(process.cwd(), 'src/redux/reducer'),
       ROOTSTORE: path.join(process.cwd(), 'src/redux/store'),
       ROOTSAGA: path.join(process.cwd(), 'src/redux/saga'),
@@ -91,10 +96,10 @@ module.exports = {
   },
   plugins:[
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor2', 'vendor1', 'manifest'],
-      filename: 'vendor/js/[name].[hash:4].js'
-    }),
-    new ExtractTextPlugin({filename: "css/[name].[contenthash:5].css", allChunks: true}),
+      name: ['vendor2', 'vendor1'],
+      filename: 'vendor/js/[name].js'
+    }),//不经常变化的第三方
+    new ExtractTextPlugin({filename: "css/common.[contenthash:5].css", allChunks: true}),
     new webpack.ProvidePlugin({
       $http: path.resolve(process.cwd(),'src/utils/http')
     }),

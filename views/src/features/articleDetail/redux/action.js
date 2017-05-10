@@ -67,7 +67,7 @@ export default {
   setArticle,
   submitComment,
   setComment,
-  commentDone,
+  // commentDone,
   fetchComment,
   setCommentList
 }

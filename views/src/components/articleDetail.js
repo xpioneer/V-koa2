@@ -7,7 +7,8 @@ import Stars from 'MATERIALUI/svg-icons/action/stars'
 
 const style={
   conent: {
-    overflow: 'auto'
+    overflow: 'auto',
+    width: '100%'
   },
   original:{
     padding: '16px',
