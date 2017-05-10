@@ -18,7 +18,7 @@ export default {
       }).then((response) => {
         callback(response)
       }).done();
-  }
+  },
 
   static post(url, params, headers, callback){
         //fetch请求

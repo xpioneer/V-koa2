@@ -30,7 +30,7 @@ const comment = (state = '', action) =>{
   return state
 }
 
-const commentSuccess = (state = {done:false, msg: ''}, action)=>{
+const commentDone = (state = {done:false, msg: ''}, action)=>{
   if(action.type === FETCH_SUCCESS || action.type === FETCH_ERROR){
     return {done:true, msg: action.msg}
   }
@@ -47,6 +47,6 @@ const commentList = (state = [], action) =>{
 export default combineReducers({
   article: article,
   comment: comment,
-  commentSuccess: commentSuccess,
+  commentDone: commentDone,
   commentList: commentList
 })

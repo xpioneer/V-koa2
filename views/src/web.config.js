@@ -1,6 +1,6 @@
 const webConfig = {
   host: {
-    http: 'http://react.visualtec.cn:991',
+    http: 'http://www.visualtec.cn:88',
     ws: '',
   },
   apiPath: '/api',

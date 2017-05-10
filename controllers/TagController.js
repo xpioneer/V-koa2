@@ -1,7 +1,7 @@
-import UTILS from '../utils'
+import TOOLS from '../utils/tools'
 import DB from '../models'
 
-const { Guid, DateTimeF, DateF, TimeF } = UTILS
+const { Guid, DateTimeF, DateF, TimeF } = TOOLS
 
 const Tag = DB.Tag;
 

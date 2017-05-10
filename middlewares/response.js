@@ -4,7 +4,7 @@ let json = ctx => {
   return (data) => {
     let responseData = new Object();
     if(typeof data === 'object' && data !== null){
-      responseData = data;
+      responseData.data = data.data === undefined ? 'undefined': data.data;
       responseData.msg = data.msg||"";
     }else{
       responseData.data = typeof data === 'function' ? data.toString() : data;
