@@ -1,7 +1,7 @@
 {
   "apps" : [{
     "name"        : "V2",
-    "script"      : "./server.js",
+    "script"      : "./bin/server.js",
     "watch"       : true,
     "env": {
       "NODE_ENV": "development",
