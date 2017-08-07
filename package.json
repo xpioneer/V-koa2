@@ -11,9 +11,11 @@
     "test": "./node_modules/.bin/ava ./tests/server.js"
   },
   "keywords": [
-    "Koa2",
+    "koa2",
     "mobile",
-    "async/await"
+    "async/await",
+    "mysql",
+    "session"
   ],
   "dependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
