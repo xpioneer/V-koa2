@@ -17,7 +17,6 @@ let getPagePara = (query) => {
 
 class ArticleController {
   static async index(ctx){
-    console.log('hehe, index', '9999999999999999999999999999999999')
     await ctx.render('index', {
       title: '首页',
       orderList: [{id:1, name:'hehe1'},{id:2, name:'hehe2'},{id:3, name:'hehe3'}],
@@ -33,7 +32,16 @@ class ArticleController {
 
   static async getArticleById(ctx){
     let id = ctx.params.id;
-    let article = await Article.findById(id)
+    let article = await Article.findById(id);
+    Article.update({
+      view_count: article.view_count+1
+    },{
+      where:{
+        id:{
+          $eq: id
+        }
+      }
+    });//更新浏览数
     ctx.Json({data: article})
   }
 
@@ -66,14 +74,17 @@ class ArticleController {
 
   static async pages(ctx){
     console.log('get ArticlePages', ctx.getParams)
+    if(!ctx.getParams.order || ctx.getParams.order.length == 0){
+      ctx.getParams.order = [['created_at', 'desc']];
+    }
     let page = await Article.findAndCountAll({
       ...ctx.getParams,
       ...{
         attributes:['id', 'title', 'abstract', 'pics', 'praise', 'contempt', 'view_count', 'is_original', 'created_at'],
-        order: [['created_at', 'desc']]
+        // order: [['created_at', 'desc']]
       }
     });
-    let list = page.rows.map(m=>{
+    page.rows.map(m=>{
       m.dataValues.created_at = DateTimeF(m.created_at);
       return m;
     })
