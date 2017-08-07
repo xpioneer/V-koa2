@@ -3,6 +3,8 @@ node_modules
 .idea
 .DS_Store
 
+DBConfig.js
+
 #views
 views/dist/
 
