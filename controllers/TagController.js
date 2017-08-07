@@ -4,7 +4,7 @@ import DB from '../models'
 const { Guid, DateTimeF, DateF, TimeF } = TOOLS
 
 const Tag = DB.Tag;
-
+const Article = DB.Article;
 
 class TagController {
   /*创建标签*/
@@ -47,15 +47,18 @@ class TagController {
 
   /*分页查询*/
   static async pages(ctx){
-    console.log('get ArticlePages', ctx.getParams)
+    console.log('get TagPages', ctx.getParams)
+    if(!ctx.getParams.order || ctx.getParams.order.length == 0){
+      ctx.getParams.order = [['created_at', 'desc']];
+    }
     let page = await Tag.findAndCountAll({
       ...ctx.getParams,
       ...{
-        attributes:['id', 'title', 'abstract', 'pics', 'praise', 'contempt', 'view_count', 'is_original', 'created_at'],
+        attributes:['id', 'name', 'remark', 'created_by', 'created_at'],
         // limit: 5
       }
     });
-    let list = page.rows.map(m=>{
+    page.rows.map(m=>{
       m.dataValues.created_at = DateTimeF(m.created_at);
       return m;
     })
@@ -64,13 +67,15 @@ class TagController {
 
   /*软删除(更新删除时间)*/
   static async delete(ctx){
-    let r = await Tag.destroy({
+    let r = await Tag.update({
+      delete_at: Date.now(),
+      delete_by: '111'
+    },{
       where:{
         id: "f1bf65de3065c461d9186ea5d3a1f597"
       }
     });
-    console.log(r)
-    ctx.body = r;
+    ctx.Json({data:'', msg:'删除成功'});
   }
 
   /*物理删除(慎用)*/
@@ -82,6 +87,23 @@ class TagController {
     });
     console.log(r)
     ctx.body = r;
+  }
+
+  static async tagCharts(ctx){
+    let tags = await Tag.findAll({
+      attributes:['name'],
+      order: [['created_at', 'desc']]
+    });
+    let list = [];
+    for(let item of tags){
+      let count = await Article.count({
+        where: {
+          tag:{ $like: `%${item.name}%` }
+        }
+      });
+      list.push({name:item.name, value:count})
+    }
+    ctx.Json({data:list});
   }
 }
 

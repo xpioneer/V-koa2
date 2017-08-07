@@ -7,6 +7,8 @@ const router = new Router({
 
 router
   .get('/all', Tag.getList)
-  .get('/detail/:id', Tag.getTagById);
+  .get('/detail/:id', Tag.getTagById)
+  .get('/tagcharts', Tag.tagCharts)
+  .get('/pages', Tag.pages);
 
 export default router

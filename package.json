@@ -4,10 +4,11 @@
   "description": "Koa2 Application",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development node server.js",
-    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon -i public/ --harmony-async-await server.js",
-    "production": "NODE_ENV=production node server",
-    "initDB": "node ./bin/dbconf/init-db-run.js"
+    "start": "NODE_ENV=development node ./bin/server.js",
+    "dev": "NODE_ENV=development ./node_modules/.bin/nodemon -i public/ ./bin/server.js",
+    "production": "NODE_ENV=production node ./bin/server",
+    "initDB": "node ./bin/dbconf/init-db-run.js",
+    "test": "./node_modules/.bin/ava ./tests/server.js"
   },
   "keywords": [
     "Koa2",
@@ -38,6 +39,9 @@
     "sequelize": "^3.30.2"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "ava": "^0.19.1",
+    "chai": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
   }
 }
