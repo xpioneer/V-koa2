@@ -44,5 +44,24 @@ api返回数据格式
         status: 200
     }
     
+#####目录结构
+
+    .
+    ├── bin
+    ├── config
+    ├── controllers
+    ├── middlewares
+    ├── models
+    ├── node_modules
+    ├── public
+    ├── routes
+    ├── start.json
+    ├── tests
+    ├── utils
+    ├── README.md
+    ├── package.json
+    └── yarn.lock
+
+    
 #####欢迎star，欢迎指导！
 
