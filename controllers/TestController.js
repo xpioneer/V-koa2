@@ -72,6 +72,42 @@ class TestController {
   //   console.log(r)
   //   ctx.body = r;
   // }
+
+  static async test200(ctx){
+    ctx.Json({data:'这里是你需要的数据。', msg: '请求成功', status: 200});
+  }
+
+  static async test400(ctx){
+    ctx.throw(400)
+  }
+
+  static async test401(ctx){
+    ctx.throw(401)
+  }
+
+  static async test403(ctx){
+    ctx.throw(403);
+  }
+
+  static async test404(ctx){
+    ctx.throw(404)
+  }
+
+  static async test405(ctx){
+    ctx.throw(405)
+  }
+
+  static async test406(ctx){
+    ctx.throw(406)
+  }
+
+  static async test500(ctx){
+    ctx.throw(500)
+  }
+
+  static async test501(ctx){
+    ctx.throw(501)
+  }
 }
 
 export default TestController

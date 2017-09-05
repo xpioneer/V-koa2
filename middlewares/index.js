@@ -7,10 +7,11 @@ import Authorize from '../middlewares/authorize'
 import Routes from './routes'
 
 const Middlewares = App =>{
+    
+  App.use(Catch)
   App.use(Cors)
   App.use(Request)
   App.use(Response)
-  App.use(Catch)
   App.use(Authorize)
 
   Routes(App)//inject routes
