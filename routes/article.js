@@ -15,7 +15,6 @@ router
   .get('/test', async (ctx, next) => {
     let json = {id:2,name:'123', msg:'HEHEHE'}
     ctx.Json({data: json, msg: '请求成功'})
-    // ctx.Json(999)
   });
-// console.log(router.methods)
+
 export default router

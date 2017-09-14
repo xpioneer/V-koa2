@@ -3,6 +3,7 @@ import authorizeRouter from '../routes/authorize'
 import tagRouter from '../routes/tag'
 import commentRouter from '../routes/comment'
 import accountRouter from '../routes/account'
+import commonRouter from '../routes/common'
 
 import testRouter from '../routes/testrouter'//测试路由
 
@@ -12,6 +13,7 @@ const Routes = App=>{
   App.use(tagRouter.routes())
   App.use(commentRouter.routes())
   App.use(accountRouter.routes())
+  App.use(commonRouter.routes())
   
   App.use(testRouter.routes())
 }
